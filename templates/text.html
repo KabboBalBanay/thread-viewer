@@ -1,0 +1,114 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Read text - Threads Reader</title>
+
+  <meta name="theme-color" content="#f6f5f2">
+
+  <style>
+    :root {
+      --bg: #f6f5f2;
+      --ink: #1b1b1b;
+      --mute: #6b6b6b;
+      --line: #d9d6cf;
+      --accent: #2f5d50;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161615;
+        --ink: #ecebe7;
+        --mute: #9a9892;
+        --line: #33322f;
+        --accent: #7fc4ae;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--ink);
+      font: 18px/1.7 Georgia, serif;
+    }
+
+    article {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .text {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    nav {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    a,
+    button {
+      color: var(--accent);
+    }
+
+    button {
+      padding: 10px 14px;
+      margin-right: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    nav a {
+      margin-right: 16px;
+    }
+
+    #status {
+      color: var(--mute);
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <h1>Reading view</h1>
+
+    <p class="text" id="post-text">{{ text }}</p>
+
+    <nav>
+      <button type="button" id="copy-button">Copy text</button>
+      <span id="status" role="status"></span>
+      <p><a href="/">Back to homepage</a></p>
+    </nav>
+  </article>
+
+  <script>
+    const copyButton = document.getElementById("copy-button");
+    const postText = document.getElementById("post-text");
+    const status = document.getElementById("status");
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(postText.textContent);
+        status.textContent = "Copied!";
+      } catch (error) {
+        status.textContent =
+          "Copy unavailable. Select the text and copy it manually.";
+      }
+    });
+  </script>
+</body>
+</html>
