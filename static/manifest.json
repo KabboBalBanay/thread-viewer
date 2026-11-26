@@ -1,0 +1,21 @@
+{
+  "id": "/",
+  "name": "Threads Reader",
+  "short_name": "Threads Reader",
+  "description": "A distraction-free reader for Threads posts and shared text.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f5f2",
+  "theme_color": "#f6f5f2",
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}
